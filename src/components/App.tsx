@@ -1,7 +1,12 @@
 import React from 'react';
 import Router from './Router';
-import Header from './Header';
+import GlobalStyles from './GlobalStyles';
 
-const App: React.FunctionComponent = () => <Router />;
+const App: React.FunctionComponent = () => (
+  <>
+    <GlobalStyles />
+    <Router />
+  </>
+);
 
 export default App;
