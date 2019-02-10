@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter, RouteComponentProps } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Navigation = styled.header`
@@ -20,10 +20,13 @@ const List = styled.ul`
   display: flex;
 `;
 
-const ListItem = styled.li`
+const ListItem = styled.li<{ current: boolean }>`
   width: 80px;
   height: 50px;
   text-align: center;
+  border-bottom: 3px solid
+    ${props => (props.current ? '#3498db' : 'transparent')};
+  transition: border-bottom 0.5s ease-in-out;
 `;
 
 const StyledLink = styled(Link)`
@@ -33,20 +36,22 @@ const StyledLink = styled(Link)`
   justify-content: center;
 `;
 
-const Header: React.FunctionComponent = () => (
+const Header: React.FunctionComponent<RouteComponentProps> = ({
+  location: { pathname }
+}) => (
   <Navigation>
     <List>
-      <ListItem>
+      <ListItem current={pathname === '/'}>
         <StyledLink to="/">Movies</StyledLink>
       </ListItem>
-      <ListItem>
+      <ListItem current={pathname === '/tv'}>
         <StyledLink to="/tv">TV</StyledLink>
       </ListItem>
-      <ListItem>
+      <ListItem current={pathname === '/search  '}>
         <StyledLink to="/search">Search</StyledLink>
       </ListItem>
     </List>
   </Navigation>
 );
 
-export default Header;
+export default withRouter(Header);
