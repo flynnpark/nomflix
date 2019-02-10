@@ -1,9 +1,18 @@
 import React from 'react';
-import { HashRouter as Router, Route } from 'react-router-dom';
-import Home from 'routes/Home';
+import { HashRouter, Route, Switch, Redirect } from 'react-router-dom';
+import Home from '../routes/Home';
+import TV from '../routes/TV';
+import Search from '../routes/Search';
 
-export default () => (
-  <Router>
-    <Route exact path="/" component={Home} />
-  </Router>
+const Router: React.FunctionComponent = () => (
+  <HashRouter>
+    <Switch>
+      <Route exact path="/" component={Home} />
+      <Route exact path="/tv" component={TV} />
+      <Route exact path="/search" component={Search} />
+      <Redirect from="*" to="/" />
+    </Switch>
+  </HashRouter>
 );
+
+export default Router;

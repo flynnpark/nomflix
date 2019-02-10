@@ -1,6 +1,12 @@
 import React from 'react';
-import Router from 'components/Router';
+import Router from './Router';
+import Header from './Header';
 
-const App: React.FunctionComponent = () => <Router />;
+const App: React.FunctionComponent = () => (
+  <>
+    <Header />
+    <Router />
+  </>
+);
 
 export default App;
