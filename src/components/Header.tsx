@@ -47,7 +47,7 @@ const Header: React.FunctionComponent<RouteComponentProps> = ({
       <ListItem current={pathname === '/tv'}>
         <StyledLink to="/tv">TV</StyledLink>
       </ListItem>
-      <ListItem current={pathname === '/search  '}>
+      <ListItem current={pathname === '/search'}>
         <StyledLink to="/search">Search</StyledLink>
       </ListItem>
     </List>
