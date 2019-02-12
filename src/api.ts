@@ -8,7 +8,7 @@ const API: AxiosInstance = Axios.create({
   }
 });
 
-interface MovieItem {
+export interface MovieItem {
   vote_count: number;
   id: number;
   video: boolean;
