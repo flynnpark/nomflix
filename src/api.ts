@@ -8,12 +8,85 @@ const API: AxiosInstance = Axios.create({
   }
 });
 
+interface MovieItem {
+  vote_count: number;
+  id: number;
+  video: boolean;
+  vote_average: number;
+  title: string;
+  popularity: number;
+  poster_path: string;
+  original_language: string;
+  original_title: string;
+  genre_ids: Array<number>;
+  backdrop_path: string;
+  adult: boolean;
+  overview: string;
+  release_date: string;
+}
+
+interface MovieListData {
+  page: number;
+  total_results: number;
+  total_pages: number;
+  results: MovieItem[];
+}
+
+interface Genre {
+  id: number;
+  name: string;
+}
+
+interface Company {
+  id: number;
+  logo_path: string | null;
+  name: string;
+  origin_country: string;
+}
+
+interface Country {
+  iso_3166_1: string;
+  name: string;
+}
+
+interface Language {
+  iso_639_1: string;
+  name: string;
+}
+
+interface MovieDetail {
+  adult: boolean;
+  backdrop_path: string;
+  budget: number;
+  genres: Genre[];
+  homepage: string;
+  id: number;
+  imdb_id: string;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+  production_companies: Company[];
+  production_countries: Country[];
+  release_date: string;
+  revenue: number;
+  runtime: number;
+  spoken_languages: Language[];
+  status: string;
+  tagline: string;
+  title: string;
+  video: boolean;
+  vote_average: number;
+  vote_count: number;
+}
+
 interface IMoviesAPI {
-  nowPlaying: () => AxiosPromise<any>;
-  upcoming: () => AxiosPromise<any>;
-  popular: () => AxiosPromise<any>;
-  movieDetail: (id: number) => AxiosPromise<any>;
-  search: (term: string) => AxiosPromise<any>;
+  nowPlaying: () => AxiosPromise<MovieListData>;
+  upcoming: () => AxiosPromise<MovieListData>;
+  popular: () => AxiosPromise<MovieListData>;
+  movieDetail: (id: number) => AxiosPromise<MovieDetail>;
+  search: (term: string) => AxiosPromise<MovieListData>;
 }
 
 export const moviesAPI: IMoviesAPI = {
