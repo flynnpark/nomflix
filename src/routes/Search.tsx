@@ -18,7 +18,6 @@ const useInput = (defaultValue: string) => {
 const useFetch = (term: string) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<ErrorEvent | null>(null);
-  const [movieResults, setMovieResult] = useState<MovieItem[] | null>(null);
   const [results, setResults] = useState<{
     moviesResults: MovieItem[] | null;
     tvResults: TvItem[] | null;
@@ -46,6 +45,8 @@ const useFetch = (term: string) => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  return { loading, results, error };
 };
 
 const Search: React.FunctionComponent = () => {
