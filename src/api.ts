@@ -54,7 +54,7 @@ interface Language {
   name: string;
 }
 
-interface MovieDetail {
+export interface MovieDetail {
   adult: boolean;
   backdrop_path: string;
   budget: number;
@@ -176,7 +176,7 @@ interface Season {
   season_number: number;
 }
 
-interface TvDetail {
+export interface TvDetail {
   backdrop_path: string;
   created_by: TvProducer[];
   episode_run_time: Array<number>;
