@@ -1,46 +1,47 @@
 import React, { useState, useEffect } from 'react';
 import { moviesAPI, MovieItem } from '../api';
 
-interface IHome {
-  nowPlaying?: MovieItem[] | null;
-  upcoming?: MovieItem[] | null;
-  popular?: MovieItem[] | null;
-}
+const useFetch = () => {
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<ErrorEvent | null>(null);
+  const [result, setResult] = useState<{
+    nowPlaying: MovieItem[] | null;
+    upcoming: MovieItem[] | null;
+    popular: MovieItem[] | null;
+  } | null>(null);
 
-const Home: React.FunctionComponent<IHome> = ({
-  nowPlaying = null,
-  upcoming = null,
-  popular = null
-}) => {
-  const [loading, setLoading] = useState(true);
-  const [nowPlayingList, setNowPlaying] = useState(nowPlaying);
-  const [upcomingList, setUpcoming] = useState(upcoming);
-  const [popularList, setPopular] = useState(popular);
+  const fetchData = async () => {
+    try {
+      const {
+        data: { results: nowPlaying }
+      } = await moviesAPI.nowPlaying();
+      const {
+        data: { results: upcoming }
+      } = await moviesAPI.upcoming();
+      const {
+        data: { results: popular }
+      } = await moviesAPI.popular();
+      setResult({
+        nowPlaying,
+        upcoming,
+        popular
+      });
+    } catch (e) {
+      setError(e);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const callNowPlaying = moviesAPI.nowPlaying().then(result => {
-      const {
-        data: { results }
-      } = result;
-      setNowPlaying(results);
-    });
-    const callUpcoming = moviesAPI.upcoming().then(result => {
-      const {
-        data: { results }
-      } = result;
-      setUpcoming(results);
-    });
-    const callPopular = moviesAPI.popular().then(result => {
-      const {
-        data: { results }
-      } = result;
-      setPopular(results);
-    });
-    Promise.all([callNowPlaying, callUpcoming, callPopular]).then(() =>
-      setLoading(false)
-    );
+    fetchData();
   }, []);
-  console.log(loading);
+
+  return { loading, result, error };
+};
+
+const Home: React.FunctionComponent = () => {
+  const { loading, result, error } = useFetch();
   return <div>Home</div>;
 };
 

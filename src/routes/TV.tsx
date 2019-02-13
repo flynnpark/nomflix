@@ -37,12 +37,11 @@ const useFetch = () => {
     fetchData();
   }, []);
 
-  return { result, loading, error };
+  return { loading, result, error };
 };
 
 const TV: React.FunctionComponent = () => {
-  const { result, loading, error } = useFetch();
-  console.log(result, loading, error);
+  const { loading, result, error } = useFetch();
   return <div>TV</div>;
 };
 
