@@ -3,7 +3,7 @@ import Axios, { AxiosInstance, AxiosPromise } from 'axios';
 const API: AxiosInstance = Axios.create({
   baseURL: 'https://api.themoviedb.org/3/',
   params: {
-    api_key: process.env.API_KEY,
+    api_key: process.env.REACT_APP_TMDB_KEY,
     language: 'en-US'
   }
 });
@@ -107,7 +107,7 @@ export const moviesAPI: IMoviesAPI = {
     })
 };
 
-interface TvItem {
+export interface TvItem {
   original_name: string;
   genre_ids: Array<number>;
   name: string;
