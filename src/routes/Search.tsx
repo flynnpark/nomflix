@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { ifError } from 'assert';
 import { MovieItem, TvItem, moviesAPI, tvAPI } from '../api';
 
 const useInput = (defaultValue: string) => {
