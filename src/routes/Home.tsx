@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 import { moviesAPI, MovieItem } from '../api';
+import Section from '../components/Section';
+
+const Container = styled.div`
+  padding: 0px 10px;
+`;
 
 const useFetch = () => {
   const [loading, setLoading] = useState<boolean>(true);
@@ -42,7 +48,29 @@ const useFetch = () => {
 
 const Home: React.FunctionComponent = () => {
   const { loading, result, error } = useFetch();
-  return <div>Home</div>;
+  return (
+    <>
+      {loading ? null : (
+        <Container>
+          {result && result.nowPlaying && result.nowPlaying.length > 0 && (
+            <Section title="Now Playing">
+              {result.nowPlaying.map(movie => movie.title)}
+            </Section>
+          )}
+          {result && result.upcoming && result.upcoming.length > 0 && (
+            <Section title="Upcoming">
+              {result.upcoming.map(movie => movie.title)}
+            </Section>
+          )}
+          {result && result.popular && result.popular.length > 0 && (
+            <Section title="Popular">
+              {result.popular.map(movie => movie.title)}
+            </Section>
+          )}
+        </Container>
+      )}
+    </>
+  );
 };
 
 export default Home;
