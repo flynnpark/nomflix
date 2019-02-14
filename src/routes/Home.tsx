@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { moviesAPI, MovieItem } from '../api';
+import Loading from '../components/Loading';
 import Section from '../components/Section';
 
 const Container = styled.div`
@@ -50,7 +51,9 @@ const Home: React.FunctionComponent = () => {
   const { loading, result, error } = useFetch();
   return (
     <>
-      {loading ? null : (
+      {loading ? (
+        <Loading />
+      ) : (
         <Container>
           {result && result.nowPlaying && result.nowPlaying.length > 0 && (
             <Section title="Now Playing">
