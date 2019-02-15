@@ -3,9 +3,10 @@ import styled from 'styled-components';
 import { TvItem, tvAPI } from '../api';
 import Loading from '../components/Loading';
 import Section from '../components/Section';
+import Poster from '../components/Poster';
 
 const Container = styled.div`
-  padding: 0px 10px;
+  padding: 0px 20px;
 `;
 
 const useFetch = () => {
@@ -56,18 +57,45 @@ const TV: React.FunctionComponent = () => {
       ) : (
         <Container>
           {result && result.topRated && result.topRated.length > 0 && (
-            <Section title="Now Playing">
-              {result.topRated.map(show => show.name)}
+            <Section title="Top Rated">
+              {result.topRated.map(show => (
+                <Poster
+                  key={show.id}
+                  id={show.id}
+                  imageURL={show.poster_path}
+                  title={show.original_name}
+                  rating={show.vote_average}
+                  year={show.first_air_date.substring(0, 4)}
+                />
+              ))}
             </Section>
           )}
           {result && result.popular && result.popular.length > 0 && (
-            <Section title="Upcoming">
-              {result.popular.map(show => show.name)}
+            <Section title="Popular">
+              {result.popular.map(show => (
+                <Poster
+                  key={show.id}
+                  id={show.id}
+                  imageURL={show.poster_path}
+                  title={show.original_name}
+                  rating={show.vote_average}
+                  year={show.first_air_date.substring(0, 4)}
+                />
+              ))}
             </Section>
           )}
           {result && result.airingToday && result.airingToday.length > 0 && (
-            <Section title="Popular">
-              {result.airingToday.map(show => show.name)}
+            <Section title="Airing Today">
+              {result.airingToday.map(show => (
+                <Poster
+                  key={show.id}
+                  id={show.id}
+                  imageURL={show.poster_path}
+                  title={show.original_name}
+                  rating={show.vote_average}
+                  year={show.first_air_date.substring(0, 4)}
+                />
+              ))}
             </Section>
           )}
         </Container>

@@ -3,9 +3,10 @@ import styled from 'styled-components';
 import { moviesAPI, MovieItem } from '../api';
 import Loading from '../components/Loading';
 import Section from '../components/Section';
+import Poster from '../components/Poster';
 
 const Container = styled.div`
-  padding: 0px 10px;
+  padding: 0px 20px;
 `;
 
 const useFetch = () => {
@@ -57,17 +58,47 @@ const Home: React.FunctionComponent = () => {
         <Container>
           {result && result.nowPlaying && result.nowPlaying.length > 0 && (
             <Section title="Now Playing">
-              {result.nowPlaying.map(movie => movie.title)}
+              {result.nowPlaying.map(movie => (
+                <Poster
+                  key={movie.id}
+                  id={movie.id}
+                  imageURL={movie.poster_path}
+                  title={movie.original_title}
+                  rating={movie.vote_average}
+                  year={movie.release_date.substring(0, 4)}
+                  isMovie={true}
+                />
+              ))}
             </Section>
           )}
           {result && result.upcoming && result.upcoming.length > 0 && (
             <Section title="Upcoming">
-              {result.upcoming.map(movie => movie.title)}
+              {result.upcoming.map(movie => (
+                <Poster
+                  key={movie.id}
+                  id={movie.id}
+                  imageURL={movie.poster_path}
+                  title={movie.original_title}
+                  rating={movie.vote_average}
+                  year={movie.release_date.substring(0, 4)}
+                  isMovie={true}
+                />
+              ))}
             </Section>
           )}
           {result && result.popular && result.popular.length > 0 && (
             <Section title="Popular">
-              {result.popular.map(movie => movie.title)}
+              {result.popular.map(movie => (
+                <Poster
+                  key={movie.id}
+                  id={movie.id}
+                  imageURL={movie.poster_path}
+                  title={movie.original_title}
+                  rating={movie.vote_average}
+                  year={movie.release_date.substring(0, 4)}
+                  isMovie={true}
+                />
+              ))}
             </Section>
           )}
         </Container>
