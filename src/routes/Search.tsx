@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { MovieItem, TvItem, moviesAPI, tvAPI } from '../api';
 import Loading from '../components/Loading';
 import Section from '../components/Section';
+import Poster from '../components/Poster';
 
 const Container = styled.div`
   padding: 0px 20px;
@@ -42,6 +43,8 @@ const useFetch = (term: string) => {
 
   const fetchData = async () => {
     try {
+      if (term.length === 0) return;
+      setLoading(true);
       const {
         data: { results: movieResults }
       } = await moviesAPI.search(term);
@@ -87,14 +90,29 @@ const Search: React.FunctionComponent = () => {
           {results && results.movieResults && results.movieResults.length > 0 && (
             <Section title="Movie Results">
               {results.movieResults.map(movie => (
-                <span key={movie.id}>{movie.title}</span>
+                <Poster
+                  key={movie.id}
+                  id={movie.id}
+                  imageURL={movie.poster_path}
+                  title={movie.original_title}
+                  rating={movie.vote_average}
+                  year={movie.release_date.substring(0, 4)}
+                  isMovie={true}
+                />
               ))}
             </Section>
           )}
           {results && results.tvResults && results.tvResults.length > 0 && (
             <Section title="TV Show Results">
               {results.tvResults.map(show => (
-                <span key={show.id}>{show.name}</span>
+                <Poster
+                  key={show.id}
+                  id={show.id}
+                  imageURL={show.poster_path}
+                  title={show.original_name}
+                  rating={show.vote_average}
+                  year={show.first_air_date.substring(0, 4)}
+                />
               ))}
             </Section>
           )}
