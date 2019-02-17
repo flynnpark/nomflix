@@ -3,7 +3,8 @@ import { moviesAPI, tvAPI, MovieDetail, TvDetail } from '../api';
 import { withRouter, RouteComponentProps } from 'react-router';
 import styled from 'styled-components';
 import Loading from '../components/Loading';
-import MovieDetailData from './MovieDetailData';
+import MovieDetailData from '../components/MovieDetailData';
+import TVDetailData from '../components/TVDetailData';
 
 const Container = styled.div`
   height: calc(100vh - 50px);
@@ -100,6 +101,8 @@ const useFetch = (pathname: string, id: number) => {
 const renderData = (result: MovieDetail | TvDetail) => {
   if ('original_title' in result) {
     return <MovieDetailData result={result} />;
+  } else if ('original_name' in result) {
+    return <TVDetailData result={result} />;
   }
   return null;
 };

@@ -1,7 +1,13 @@
 import React from 'react';
-import styled from 'styled-components';
 import { MovieDetail } from '../api';
-import { Data, ItemContainer, Title, Item, Divider, Overview } from './Detail';
+import {
+  Data,
+  ItemContainer,
+  Title,
+  Item,
+  Divider,
+  Overview
+} from '../routes/Detail';
 
 interface IProps {
   result: MovieDetail;
