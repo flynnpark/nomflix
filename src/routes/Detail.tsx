@@ -43,6 +43,32 @@ const Cover = styled.div<{ bgURL: string }>`
   border-radius: 5px;
 `;
 
+export const Data = styled.div`
+  width: 70%;
+  margin-left: 10px;
+`;
+
+export const Title = styled.h3`
+  font-size: 32px;
+`;
+
+export const ItemContainer = styled.div`
+  margin: 20px 0;
+`;
+
+export const Item = styled.span``;
+
+export const Divider = styled.span`
+  margin: 0 10px;
+`;
+
+export const Overview = styled.p`
+  font-size: 12px;
+  opacity: 0.7;
+  line-height: 1.5;
+  width: 50%;
+`;
+
 const useFetch = (pathname: string, id: number) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<ErrorEvent | null>(null);

@@ -1,32 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { MovieDetail } from '../api';
-
-const Data = styled.div`
-  width: 70%;
-  margin-left: 10px;
-`;
-
-const Title = styled.h3`
-  font-size: 32px;
-`;
-
-const ItemContainer = styled.div`
-  margin: 20px 0;
-`;
-
-const Item = styled.span``;
-
-const Divider = styled.span`
-  margin: 0 10px;
-`;
-
-const Overview = styled.p`
-  font-size: 12px;
-  opacity: 0.7;
-  line-height: 1.5;
-  width: 50%;
-`;
+import { Data, ItemContainer, Title, Item, Divider, Overview } from './Detail';
 
 interface IProps {
   result: MovieDetail;
