@@ -47,7 +47,7 @@ const Cover = styled.div<{ bgURL: string }>`
 
 export const Data = styled.div`
   width: 70%;
-  margin-left: 10px;
+  margin-left: 40px;
 `;
 
 export const Title = styled.h3`
@@ -65,7 +65,7 @@ export const Divider = styled.span`
 `;
 
 export const Overview = styled.p`
-  font-size: 12px;
+  font-size: 14px;
   opacity: 0.7;
   line-height: 1.5;
   width: 50%;

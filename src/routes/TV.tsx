@@ -7,7 +7,7 @@ import Section from '../components/Section';
 import Poster from '../components/Poster';
 
 const Container = styled.div`
-  padding: 0px 20px;
+  padding: 20px;
 `;
 
 const useFetch = () => {
