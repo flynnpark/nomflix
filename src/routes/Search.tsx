@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Helmet from 'react-helmet';
 import styled from 'styled-components';
 import { MovieItem, TvItem, moviesAPI, tvAPI } from '../api';
 import Loading from '../components/Loading';
@@ -75,6 +76,7 @@ const Search: React.FunctionComponent = () => {
   const { loading, results, error } = useFetch(termValue);
   return (
     <Container>
+      <Helmet title="Search | Nomflix" />
       <Form
         onSubmit={(event: React.FormEvent<HTMLFormElement>) => {
           event.preventDefault();

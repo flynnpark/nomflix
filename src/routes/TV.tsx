@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Helmet from 'react-helmet';
 import styled from 'styled-components';
 import { TvItem, tvAPI } from '../api';
 import Loading from '../components/Loading';
@@ -52,6 +53,7 @@ const TV: React.FunctionComponent = () => {
   const { loading, result, error } = useFetch();
   return (
     <>
+      <Helmet title="TV Shows | Nomflix" />
       {loading ? (
         <Loading />
       ) : (

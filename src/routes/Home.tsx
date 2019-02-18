@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Helmet from 'react-helmet';
 import styled from 'styled-components';
 import { moviesAPI, MovieItem } from '../api';
 import Loading from '../components/Loading';
@@ -52,6 +53,7 @@ const Home: React.FunctionComponent = () => {
   const { loading, result, error } = useFetch();
   return (
     <>
+      <Helmet title="Movies | Nomflix" />
       {loading ? (
         <Loading />
       ) : (

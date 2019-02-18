@@ -1,4 +1,5 @@
 import React from 'react';
+import Helmet from 'react-helmet';
 import { TvDetail } from '../api';
 import {
   Data,
@@ -15,6 +16,7 @@ interface IProps {
 
 const TVDetailData: React.FunctionComponent<IProps> = ({ result }) => (
   <Data>
+    <Helmet title={`${result.original_name} | Nomflix`} />
     <Title>{result.original_name}</Title>
     <ItemContainer>
       <Item>{result.first_air_date.substring(0, 4)}</Item>
