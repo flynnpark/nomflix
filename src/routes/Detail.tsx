@@ -94,7 +94,7 @@ const useFetch = (pathname: string, id: number) => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [fetchData]);
 
   return { loading, result, error };
 };
@@ -116,10 +116,10 @@ const Detail: React.FunctionComponent<
     return null;
   } else {
     const parsedId = parseInt(params.id);
+    const { loading, result, error } = useFetch(pathname, parsedId);
     if (isNaN(parsedId)) {
       push('/');
     }
-    const { loading, result, error } = useFetch(pathname, parsedId);
     return (
       <>
         {loading ? (
