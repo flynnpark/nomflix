@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Helmet from 'react-helmet';
 import styled from 'styled-components';
-import { TvItem, tvAPI } from '../api';
-import Loading from '../components/Loading';
-import Section from '../components/Section';
-import Poster from '../components/Poster';
+import { TvItem, tvAPI } from 'api';
+import Loading from 'components/Loading';
+import Section from 'components/Section';
+import Poster from 'components/Poster';
 
 const Container = styled.div`
   padding: 20px;

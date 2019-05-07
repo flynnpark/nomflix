@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import styled, { StyledFunction } from 'styled-components';
+import styled from 'styled-components';
 
 const Container = styled.div`
   font-size: 12px;
@@ -70,7 +70,7 @@ const Poster: React.FunctionComponent<IProps> = ({
           bgURL={
             imageURL
               ? `https://image.tmdb.org/t/p/w300${imageURL}`
-              : require('../assets/noPosterSmall.png')
+              : require('assets/noPosterSmall.png')
           }
         />
         <Rating>

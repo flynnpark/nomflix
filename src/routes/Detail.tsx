@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { withRouter, RouteComponentProps } from 'react-router';
 import Helmet from 'react-helmet';
 import styled from 'styled-components';
-import { moviesAPI, tvAPI, MovieDetail, TvDetail } from '../api';
-import Loading from '../components/Loading';
-import MovieDetailData from '../components/MovieDetailData';
-import TVDetailData from '../components/TVDetailData';
+import { moviesAPI, tvAPI, MovieDetail, TvDetail } from 'api';
+import Loading from 'components/Loading';
+import MovieDetailData from 'components/MovieDetailData';
+import TVDetailData from 'components/TVDetailData';
 
 const Container = styled.div`
   height: calc(100vh - 50px);
@@ -143,7 +143,7 @@ const Detail: React.FunctionComponent<
                         ? `https://image.tmdb.org/t/p/original${
                             result.poster_path
                           }`
-                        : require('../assets/noPosterSmall.png')
+                        : require('assets/noPosterSmall.png')
                     }
                   />
                   {renderData(result)}

@@ -1,6 +1,6 @@
 import React from 'react';
 import Helmet from 'react-helmet';
-import { TvDetail } from '../api';
+import { TvDetail } from 'api';
 import {
   Data,
   ItemContainer,
@@ -8,7 +8,7 @@ import {
   Item,
   Divider,
   Overview
-} from '../routes/Detail';
+} from 'routes/Detail';
 
 interface IProps {
   result: TvDetail;
