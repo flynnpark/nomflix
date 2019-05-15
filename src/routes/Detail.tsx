@@ -71,30 +71,34 @@ export const Overview = styled.p`
   width: 50%;
 `;
 
-const useFetch = (pathname: string, id: number) => {
+const useFetch = (pathname: string, id: string | undefined) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<ErrorEvent | null>(null);
   const [result, setResult] = useState<MovieDetail | TvDetail | null>(null);
 
-  const fetchData = async () => {
-    try {
-      if (pathname.includes('/movie/')) {
-        const { data } = await moviesAPI.movieDetail(id);
-        setResult(data);
-      } else {
-        const { data } = await tvAPI.showDetail(id);
-        setResult(data);
-      }
-    } catch (e) {
-      setError(e);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (id) {
+          const movieId = parseInt(id);
+          if (pathname.includes('/movie/')) {
+            const { data } = await moviesAPI.movieDetail(movieId);
+            setResult(data);
+          } else {
+            const { data } = await tvAPI.showDetail(movieId);
+            setResult(data);
+          }
+        } else {
+          throw Error('Id is undefined.');
+        }
+      } catch (e) {
+        setError(e);
+      } finally {
+        setLoading(false);
+      }
+    };
     fetchData();
-  }, [fetchData]);
+  }, [id, pathname]);
 
   return { loading, result, error };
 };
@@ -111,50 +115,41 @@ const renderData = (result: MovieDetail | TvDetail) => {
 const Detail: React.FunctionComponent<
   RouteComponentProps<{ id: string | undefined }>
 > = ({ location: { pathname }, history: { push }, match: { params } }) => {
-  if (!params.id) {
-    push('/');
-    return null;
-  } else {
-    const parsedId = parseInt(params.id);
-    const { loading, result, error } = useFetch(pathname, parsedId);
-    if (isNaN(parsedId)) {
-      push('/');
-    }
-    return (
-      <>
-        {loading ? (
-          <>
-            <Helmet title="Loading | Nomflix" />
-            <Loading />
-          </>
-        ) : (
-          <Container>
-            {result && (
-              <>
-                <Backdrop
-                  bgURL={`https://image.tmdb.org/t/p/original${
-                    result.backdrop_path
-                  }`}
+  const { loading, result } = useFetch(pathname, params.id);
+  return (
+    <>
+      {loading ? (
+        <>
+          <Helmet title="Loading | Nomflix" />
+          <Loading />
+        </>
+      ) : (
+        <Container>
+          {result && (
+            <>
+              <Backdrop
+                bgURL={`https://image.tmdb.org/t/p/original${
+                  result.backdrop_path
+                }`}
+              />
+              <Content>
+                <Cover
+                  bgURL={
+                    result.poster_path
+                      ? `https://image.tmdb.org/t/p/original${
+                          result.poster_path
+                        }`
+                      : require('assets/noPosterSmall.png')
+                  }
                 />
-                <Content>
-                  <Cover
-                    bgURL={
-                      result.poster_path
-                        ? `https://image.tmdb.org/t/p/original${
-                            result.poster_path
-                          }`
-                        : require('assets/noPosterSmall.png')
-                    }
-                  />
-                  {renderData(result)}
-                </Content>
-              </>
-            )}
-          </Container>
-        )}
-      </>
-    );
-  }
+                {renderData(result)}
+              </Content>
+            </>
+          )}
+        </Container>
+      )}
+    </>
+  );
 };
 
 export default withRouter(Detail);
