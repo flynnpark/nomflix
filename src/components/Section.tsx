@@ -23,7 +23,7 @@ interface IProps {
   title: string;
 }
 
-const Section: React.FunctionComponent<IProps> = ({ title, children }) => (
+const Section: React.FC<IProps> = ({ title, children }) => (
   <Container>
     <Title>{title}</Title>
     <Grid>{children}</Grid>

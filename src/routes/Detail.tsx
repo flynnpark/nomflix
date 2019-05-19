@@ -6,6 +6,7 @@ import { moviesAPI, tvAPI, MovieDetail, TvDetail } from 'api';
 import Loading from 'components/Loading';
 import MovieDetailData from 'components/MovieDetailData';
 import TVDetailData from 'components/TVDetailData';
+import NoResult from 'components/NoResult';
 
 const Container = styled.div`
   height: calc(100vh - 50px);
@@ -93,6 +94,7 @@ const useFetch = (pathname: string, id: string | undefined) => {
         }
       } catch (e) {
         setError(e);
+        setResult(null);
       } finally {
         setLoading(false);
       }
@@ -112,9 +114,11 @@ const renderData = (result: MovieDetail | TvDetail) => {
   return null;
 };
 
-const Detail: React.FunctionComponent<
-  RouteComponentProps<{ id: string | undefined }>
-> = ({ location: { pathname }, history: { push }, match: { params } }) => {
+const Detail: React.FC<RouteComponentProps<{ id: string | undefined }>> = ({
+  location: { pathname },
+  history: { push },
+  match: { params }
+}) => {
   const { loading, result } = useFetch(pathname, params.id);
   return (
     <>
@@ -125,7 +129,7 @@ const Detail: React.FunctionComponent<
         </>
       ) : (
         <Container>
-          {result && (
+          {result ? (
             <>
               <Backdrop
                 bgURL={`https://image.tmdb.org/t/p/original${
@@ -145,6 +149,10 @@ const Detail: React.FunctionComponent<
                 {renderData(result)}
               </Content>
             </>
+          ) : (
+            <Content>
+              <NoResult />
+            </Content>
           )}
         </Container>
       )}

@@ -14,7 +14,7 @@ interface IProps {
   result: MovieDetail;
 }
 
-const MovieDetailData: React.FunctionComponent<IProps> = ({ result }) => (
+const MovieDetailData: React.FC<IProps> = ({ result }) => (
   <Data>
     <Helmet title={`${result.original_title} | Nomflix`} />
     <Title>{result.original_title}</Title>

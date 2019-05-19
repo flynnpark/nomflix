@@ -14,7 +14,7 @@ interface IProps {
   result: TvDetail;
 }
 
-const TVDetailData: React.FunctionComponent<IProps> = ({ result }) => (
+const TVDetailData: React.FC<IProps> = ({ result }) => (
   <Data>
     <Helmet title={`${result.original_name} | Nomflix`} />
     <Title>{result.original_name}</Title>

@@ -49,8 +49,8 @@ const useFetch = () => {
   return { loading, result, error };
 };
 
-const Home: React.FunctionComponent = () => {
-  const { loading, result, error } = useFetch();
+const Home: React.FC = () => {
+  const { loading, result } = useFetch();
   return (
     <>
       <Helmet title="Movies | Nomflix" />

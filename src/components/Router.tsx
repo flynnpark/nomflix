@@ -6,7 +6,7 @@ import Search from 'routes/Search';
 import Detail from 'routes/Detail';
 import Header from './Header';
 
-const Router: React.FunctionComponent = () => (
+const Router: React.FC = () => (
   <HashRouter>
     <>
       <Header />
