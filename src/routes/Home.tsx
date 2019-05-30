@@ -18,7 +18,6 @@ const useFetch = () => {
     upcoming: MovieItem[] | null;
     popular: MovieItem[] | null;
   } | null>(null);
-
   const fetchData = async () => {
     try {
       const {
@@ -41,7 +40,6 @@ const useFetch = () => {
       setLoading(false);
     }
   };
-
   useEffect(() => {
     fetchData();
   });
