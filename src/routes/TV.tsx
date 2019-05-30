@@ -18,7 +18,6 @@ const useFetch = () => {
     popular: TvItem[] | null;
     airingToday: TvItem[] | null;
   } | null>(null);
-
   const fetchData = async () => {
     try {
       const {
@@ -41,7 +40,6 @@ const useFetch = () => {
       setLoading(false);
     }
   };
-
   useEffect(() => {
     fetchData();
   }, []);

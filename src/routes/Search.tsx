@@ -41,30 +41,29 @@ const useFetch = (term: string) => {
     movieResults: MovieItem[] | null;
     tvResults: TvItem[] | null;
   } | null>(null);
-
+  const fetchData = async () => {
+    try {
+      if (term.length === 0) return;
+      setLoading(true);
+      const {
+        data: { results: movieResults }
+      } = await moviesAPI.search(term);
+      const {
+        data: { results: tvResults }
+      } = await tvAPI.search(term);
+      setResults({
+        movieResults,
+        tvResults
+      });
+    } catch (e) {
+      setError(e);
+    } finally {
+      setLoading(false);
+    }
+  };
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        if (term.length === 0) return;
-        setLoading(true);
-        const {
-          data: { results: movieResults }
-        } = await moviesAPI.search(term);
-        const {
-          data: { results: tvResults }
-        } = await tvAPI.search(term);
-        setResults({
-          movieResults,
-          tvResults
-        });
-      } catch (e) {
-        setError(e);
-      } finally {
-        setLoading(false);
-      }
-    };
     fetchData();
-  }, [term]);
+  });
 
   return { loading, results, error };
 };
