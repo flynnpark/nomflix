@@ -76,30 +76,30 @@ const useFetch = (pathname: string, id: string | undefined) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<ErrorEvent | null>(null);
   const [result, setResult] = useState<MovieDetail | TvDetail | null>(null);
-  const fetchData = async () => {
-    try {
-      if (id) {
-        const movieId = parseInt(id);
-        if (pathname.includes('/movie/')) {
-          const { data } = await moviesAPI.movieDetail(movieId);
-          setResult(data);
-        } else {
-          const { data } = await tvAPI.showDetail(movieId);
-          setResult(data);
-        }
-      } else {
-        throw Error('Id is undefined.');
-      }
-    } catch (e) {
-      setError(e);
-      setResult(null);
-    } finally {
-      setLoading(false);
-    }
-  };
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (id) {
+          const movieId = parseInt(id);
+          if (pathname.includes('/movie/')) {
+            const { data } = await moviesAPI.movieDetail(movieId);
+            setResult(data);
+          } else {
+            const { data } = await tvAPI.showDetail(movieId);
+            setResult(data);
+          }
+        } else {
+          throw Error('Id is undefined.');
+        }
+      } catch (e) {
+        setError(e);
+        setResult(null);
+      } finally {
+        setLoading(false);
+      }
+    };
     fetchData();
-  });
+  }, [pathname, id]);
 
   return { loading, result, error };
 };

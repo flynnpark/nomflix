@@ -41,7 +41,6 @@ const useFetch = (term: string) => {
     movieResults: MovieItem[] | null;
     tvResults: TvItem[] | null;
   } | null>(null);
-
   useEffect(() => {
     const fetchData = async () => {
       try {

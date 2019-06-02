@@ -18,31 +18,31 @@ const useFetch = () => {
     upcoming: MovieItem[] | null;
     popular: MovieItem[] | null;
   } | null>(null);
-  const fetchData = async () => {
-    try {
-      const {
-        data: { results: nowPlaying }
-      } = await moviesAPI.nowPlaying();
-      const {
-        data: { results: upcoming }
-      } = await moviesAPI.upcoming();
-      const {
-        data: { results: popular }
-      } = await moviesAPI.popular();
-      setResult({
-        nowPlaying,
-        upcoming,
-        popular
-      });
-    } catch (e) {
-      setError(e);
-    } finally {
-      setLoading(false);
-    }
-  };
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const {
+          data: { results: nowPlaying }
+        } = await moviesAPI.nowPlaying();
+        const {
+          data: { results: upcoming }
+        } = await moviesAPI.upcoming();
+        const {
+          data: { results: popular }
+        } = await moviesAPI.popular();
+        setResult({
+          nowPlaying,
+          upcoming,
+          popular
+        });
+      } catch (e) {
+        setError(e);
+      } finally {
+        setLoading(false);
+      }
+    };
     fetchData();
-  });
+  }, []);
 
   return { loading, result, error };
 };
