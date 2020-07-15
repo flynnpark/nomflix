@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { withRouter, RouteComponentProps } from 'react-router';
-import Helmet from 'react-helmet';
+import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import { moviesAPI, tvAPI, MovieDetail, TvDetail } from 'api';
 import Loading from 'components/Loading';

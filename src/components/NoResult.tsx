@@ -1,5 +1,5 @@
 import React from 'react';
-import Helmet from 'react-helmet';
+import { Helmet } from 'react-helmet';
 import { Data, Title } from 'routes/Detail';
 
 const NoResult: React.FC = () => (
