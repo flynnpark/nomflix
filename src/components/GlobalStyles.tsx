@@ -5,7 +5,10 @@ import {
 } from 'styled-components';
 import reset from 'styled-reset';
 
-const globalStyles: GlobalStyleComponent<{}, DefaultTheme> = createGlobalStyle`
+const globalStyles: GlobalStyleComponent<
+  unknown,
+  DefaultTheme
+> = createGlobalStyle`
   ${reset};
   a {
     text-decoration: none;

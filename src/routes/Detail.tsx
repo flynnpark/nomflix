@@ -21,7 +21,7 @@ const Backdrop = styled.div<{ bgURL: string }>`
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url(${props => props.bgURL});
+  background-image: url(${(props) => props.bgURL});
   background-position: center center;
   background-size: cover;
   filter: blur(3px);
@@ -39,7 +39,7 @@ const Content = styled.div`
 
 const Cover = styled.div<{ bgURL: string }>`
   width: 30%;
-  background-image: url(${props => props.bgURL});
+  background-image: url(${(props) => props.bgURL});
   background-position: center center;
   background-size: cover;
   height: 100%;
@@ -131,17 +131,13 @@ const Detail: React.FC<RouteComponentProps<{ id: string | undefined }>> = ({
           {result ? (
             <>
               <Backdrop
-                bgURL={`https://image.tmdb.org/t/p/original${
-                  result.backdrop_path
-                }`}
+                bgURL={`https://image.tmdb.org/t/p/original${result.backdrop_path}`}
               />
               <Content>
                 <Cover
                   bgURL={
                     result.poster_path
-                      ? `https://image.tmdb.org/t/p/original${
-                          result.poster_path
-                        }`
+                      ? `https://image.tmdb.org/t/p/original${result.poster_path}`
                       : require('assets/noPosterSmall.png')
                   }
                 />

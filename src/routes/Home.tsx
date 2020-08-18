@@ -43,7 +43,6 @@ const useFetch = () => {
     };
     fetchData();
   }, []);
-
   return { loading, result, error };
 };
 
@@ -58,7 +57,7 @@ const Home: React.FC = () => {
         <Container>
           {result && result.nowPlaying && result.nowPlaying.length > 0 && (
             <Section title="Now Playing">
-              {result.nowPlaying.map(movie => (
+              {result.nowPlaying.map((movie) => (
                 <Poster
                   key={movie.id}
                   id={movie.id}
@@ -73,7 +72,7 @@ const Home: React.FC = () => {
           )}
           {result && result.upcoming && result.upcoming.length > 0 && (
             <Section title="Upcoming">
-              {result.upcoming.map(movie => (
+              {result.upcoming.map((movie) => (
                 <Poster
                   key={movie.id}
                   id={movie.id}
@@ -88,7 +87,7 @@ const Home: React.FC = () => {
           )}
           {result && result.popular && result.popular.length > 0 && (
             <Section title="Popular">
-              {result.popular.map(movie => (
+              {result.popular.map((movie) => (
                 <Poster
                   key={movie.id}
                   id={movie.id}

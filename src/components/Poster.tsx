@@ -7,7 +7,7 @@ const Container = styled.div`
 `;
 
 const Image = styled.div<{ bgURL: string }>`
-  background-image: url(${props => props.bgURL});
+  background-image: url(${(props) => props.bgURL});
   height: 180px;
   background-size: cover;
   border-radius: 4px;

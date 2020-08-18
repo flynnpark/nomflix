@@ -10,7 +10,7 @@ const Container = styled.div`
   margin-top: 20px;
 `;
 
-const Loading = () => (
+const Loading: React.FunctionComponent = () => (
   <Container>
     <span role="img" aria-label="Loading">
       Loading...

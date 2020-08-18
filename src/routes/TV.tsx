@@ -58,7 +58,7 @@ const TV: React.FC = () => {
         <Container>
           {result && result.topRated && result.topRated.length > 0 && (
             <Section title="Top Rated">
-              {result.topRated.map(show => (
+              {result.topRated.map((show) => (
                 <Poster
                   key={show.id}
                   id={show.id}
@@ -72,7 +72,7 @@ const TV: React.FC = () => {
           )}
           {result && result.popular && result.popular.length > 0 && (
             <Section title="Popular">
-              {result.popular.map(show => (
+              {result.popular.map((show) => (
                 <Poster
                   key={show.id}
                   id={show.id}
@@ -86,7 +86,7 @@ const TV: React.FC = () => {
           )}
           {result && result.airingToday && result.airingToday.length > 0 && (
             <Section title="Airing Today">
-              {result.airingToday.map(show => (
+              {result.airingToday.map((show) => (
                 <Poster
                   key={show.id}
                   id={show.id}

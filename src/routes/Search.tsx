@@ -23,14 +23,12 @@ const Input = styled.input`
 
 const useInput = (defaultValue: string) => {
   const [value, setValue] = useState(defaultValue);
-
   const onChange = (event: React.FormEvent<HTMLInputElement>) => {
     const {
       currentTarget: { value }
     } = event;
     setValue(value);
   };
-
   return { value, onChange };
 };
 
@@ -89,7 +87,7 @@ const Search: React.FC = () => {
         <>
           {results && results.movieResults && results.movieResults.length > 0 && (
             <Section title="Movie Results">
-              {results.movieResults.map(movie => (
+              {results.movieResults.map((movie) => (
                 <Poster
                   key={movie.id}
                   id={movie.id}
@@ -104,7 +102,7 @@ const Search: React.FC = () => {
           )}
           {results && results.tvResults && results.tvResults.length > 0 && (
             <Section title="TV Show Results">
-              {results.tvResults.map(show => (
+              {results.tvResults.map((show) => (
                 <Poster
                   key={show.id}
                   id={show.id}
