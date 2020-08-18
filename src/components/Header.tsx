@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, withRouter, RouteComponentProps } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Navigation = styled.header`
@@ -36,22 +36,23 @@ const StyledLink = styled(Link)`
   justify-content: center;
 `;
 
-const Header: React.FunctionComponent<RouteComponentProps> = ({
-  location: { pathname }
-}) => (
-  <Navigation>
-    <List>
-      <ListItem current={pathname === '/'}>
-        <StyledLink to="/">Movies</StyledLink>
-      </ListItem>
-      <ListItem current={pathname === '/tv'}>
-        <StyledLink to="/tv">TV</StyledLink>
-      </ListItem>
-      <ListItem current={pathname === '/search'}>
-        <StyledLink to="/search">Search</StyledLink>
-      </ListItem>
-    </List>
-  </Navigation>
-);
+const Header: React.FunctionComponent = () => {
+  const { pathname } = useLocation();
+  return (
+    <Navigation>
+      <List>
+        <ListItem current={pathname === '/'}>
+          <StyledLink to="/">Movies</StyledLink>
+        </ListItem>
+        <ListItem current={pathname === '/tv'}>
+          <StyledLink to="/tv">TV</StyledLink>
+        </ListItem>
+        <ListItem current={pathname === '/search'}>
+          <StyledLink to="/search">Search</StyledLink>
+        </ListItem>
+      </List>
+    </Navigation>
+  );
+};
 
-export default withRouter(Header);
+export default Header;
