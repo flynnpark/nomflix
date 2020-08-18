@@ -46,7 +46,7 @@ const useFetch = () => {
   return { loading, result, error };
 };
 
-const Home: React.FC = () => {
+const Home: React.FunctionComponent = () => {
   const { loading, result } = useFetch();
   return (
     <>

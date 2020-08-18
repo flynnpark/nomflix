@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { withRouter, RouteComponentProps } from 'react-router';
+import { useLocation, useParams } from 'react-router';
 import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import { moviesAPI, tvAPI, MovieDetail, TvDetail } from 'api';
@@ -113,12 +113,10 @@ const renderData = (result: MovieDetail | TvDetail) => {
   return null;
 };
 
-const Detail: React.FC<RouteComponentProps<{ id: string | undefined }>> = ({
-  location: { pathname },
-  history: { push },
-  match: { params }
-}) => {
-  const { loading, result } = useFetch(pathname, params.id);
+const Detail: React.FunctionComponent = () => {
+  const { pathname } = useLocation();
+  const { id } = useParams();
+  const { loading, result } = useFetch(pathname, id);
   return (
     <>
       {loading ? (
@@ -155,4 +153,4 @@ const Detail: React.FC<RouteComponentProps<{ id: string | undefined }>> = ({
   );
 };
 
-export default withRouter(Detail);
+export default Detail;

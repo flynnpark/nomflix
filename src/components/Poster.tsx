@@ -55,7 +55,7 @@ interface IProps {
   isMovie?: boolean;
 }
 
-const Poster: React.FC<IProps> = ({
+const Poster: React.FunctionComponent<IProps> = ({
   id,
   imageURL,
   title,

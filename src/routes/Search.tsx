@@ -66,7 +66,7 @@ const useFetch = (term: string) => {
   return { loading, results, error };
 };
 
-const Search: React.FC = () => {
+const Search: React.FunctionComponent = () => {
   const term = useInput('');
   const [termValue, setTermValue] = useState('');
   const { loading, results } = useFetch(termValue);

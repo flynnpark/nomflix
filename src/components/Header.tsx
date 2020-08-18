@@ -36,7 +36,9 @@ const StyledLink = styled(Link)`
   justify-content: center;
 `;
 
-const Header: React.FC<RouteComponentProps> = ({ location: { pathname } }) => (
+const Header: React.FunctionComponent<RouteComponentProps> = ({
+  location: { pathname }
+}) => (
   <Navigation>
     <List>
       <ListItem current={pathname === '/'}>

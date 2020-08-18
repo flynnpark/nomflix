@@ -2,7 +2,7 @@ import React from 'react';
 import Router from './Router';
 import GlobalStyles from './GlobalStyles';
 
-const App: React.FC = () => (
+const App: React.FunctionComponent = () => (
   <>
     <GlobalStyles />
     <Router />
