@@ -1,6 +1,6 @@
 import React from 'react';
-import Router from './Router';
-import GlobalStyles from './GlobalStyles';
+import Router from 'components/Router';
+import GlobalStyles from 'components/GlobalStyles';
 
 const App: React.FunctionComponent = () => (
   <>
